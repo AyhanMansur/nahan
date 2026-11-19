@@ -1,168 +1,56 @@
-<!DOCTYPE html><html lang="en" class="dark"><head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-      <meta name="mobile-web-app-capable" content="yes">
-      <meta name="theme-color" content="#05060d">
-      <meta name="apple-mobile-web-app-title" content="AyhanX-Gate">
-      <meta name="format-detection" content="telephone=no">
-      <meta name="msapplication-tap-highlight" content="no">
-      <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2306b6d4'/><text x='50' y='62' font-size='40' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>👾</text></svg>">
-      <title>AyhanX-Gate</title>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Vazirmatn:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
-      <script src="https://cdn.jsdelivr.net/gh/itsyebekhe/nahan@main/tailwindcss.js"></script>
-            <script>
-          tailwind.config = {
-    darkMode: 'class',
-    theme: {
-        extend: {
-            fontFamily: { sans: ['Inter', 'sans-serif'], fa: ['Vazirmatn', 'sans-serif'] },
-            colors: {
-                primary: 'var(--color-primary)',
-                darkbg: 'var(--color-bg)',
-                darkcard: 'var(--color-surface)',
-                darkborder: 'var(--color-border)',
-                white: '#ffffff',
-                black: '#000',
-                slate: {
-                    50: 'var(--slate-50)',
-                    100: 'var(--slate-100)',
-                    200: 'var(--slate-200)',
-                    300: 'var(--slate-300)',
-                    400: 'var(--slate-400)',
-                    500: 'var(--slate-500)',
-                    600: 'var(--slate-600)',
-                    700: 'var(--slate-700)',
-                    800: 'var(--slate-800)',
-                    900: 'var(--slate-900)',
-                }
-            }
-        }
-    }
-}
-</script>
+<aside class="hidden md:flex w-64 border-e border-slate-200 dark:border-darkborder flex-col z-20 shrink-0">
+    <div class="flex items-center gap-3 p-6 border-b border-[var(--color-border)]">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
+             style="background: linear-gradient(135deg, rgba(34,211,238,.25), rgba(168,85,247,.25)); border: 1px solid rgba(34,211,238,.35);">👾</div>
+        <div class="flex flex-col">
+            <h1 class="font-black text-lg leading-none" data-i18n="title">AyhanX-Gate</h1>
+            <span id="app-version" class="text-[10px] font-mono text-slate-400 mt-1">v__CURRENT_VERSION__</span>
+        </div>
+    </div>
+    <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+        <div class="nav-label">Control</div>
+        <button onclick="switchTab('overview')" id="tab-overview" class="nav-item active flex items-center w-full px-4 py-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <svg class="w-5 h-5 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <span class="font-semibold text-sm" data-i18n="tab_overview">Dashboard</span>
+        </button>
+        <button onclick="switchTab('users')" id="tab-users" class="nav-item flex items-center w-full px-4 py-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <svg class="w-5 h-5 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            <span class="font-semibold text-sm" data-i18n="tab_users">Clients</span>
+        </button>
+        <button onclick="switchTab('logs')" id="tab-logs" class="nav-item flex items-center w-full px-4 py-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <svg class="w-5 h-5 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span class="font-semibold text-sm" data-i18n="tab_logs">Logs</span>
+        </button>
 
-  <style>
-:root {
-    --color-text: #e6f7ff;
-    --color-text-muted: #7c93b3;
-    --color-primary: #22d3ee;
-    --color-primary-hover: #06b6d4;
-    --color-accent: #a855f7;
-    --color-bg: #05060d;
-    --color-surface: rgba(12, 16, 30, 0.72);
-    --color-bg-alt: #111629;
-    --color-border: rgba(34, 211, 238, 0.14);
+        <div class="nav-label">Network</div>
+        <button onclick="switchTab('info')" id="tab-info" class="nav-item flex items-center w-full px-4 py-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <svg class="w-5 h-5 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path></svg>
+            <span class="font-semibold text-sm" data-i18n="tab_info">Endpoints</span>
+        </button>
+        <button onclick="switchTab('network')" id="tab-network" class="nav-item flex items-center w-full px-4 py-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <svg class="w-5 h-5 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10"></path></svg>
+            <span class="font-semibold text-sm" data-i18n="tab_status">Metrics</span>
+        </button>
 
-    --slate-50: #080b16;
-    --slate-100: #101528;
-    --slate-200: #1a2340;
-    --slate-300: #9fb3d1;
-    --slate-400: #7c93b3;
-    --slate-500: #5b6f91;
-    --slate-600: #8ea3c4;
-    --slate-700: #c5d4ea;
-    --slate-800: #0c1020;
-    --slate-900: #e6f7ff;
-}
+        <div class="nav-label">Configure</div>
+        <button onclick="switchTab('settings')" id="tab-settings" class="nav-item flex items-center w-full px-4 py-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <svg class="w-5 h-5 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            <span class="font-semibold text-sm" data-i18n="tab_settings">System</span>
+        </button>
+        <button onclick="switchTab('advanced')" id="tab-advanced" class="nav-item flex items-center w-full px-4 py-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <svg class="w-5 h-5 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <span class="font-semibold text-sm" data-i18n="tab_adv">Advanced</span>
+        </button>
 
-html.dark { color-scheme: dark; }
-
-body {
-    font-family: 'Inter', 'Vazirmatn', sans-serif;
-    background:
-        radial-gradient(900px 500px at 10% -10%, rgba(34, 211, 238, 0.12), transparent 60%),
-        radial-gradient(700px 500px at 110% 10%, rgba(168, 85, 247, 0.14), transparent 60%),
-        linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px) 0 0 / 100% 36px,
-        linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px) 0 0 / 36px 100%,
-        var(--color-bg);
-    background-attachment: fixed;
-    color: var(--color-text);
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-[class*="bg-[var(--color-surface)]"] {
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    border-color: var(--color-border) !important;
-    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
-}
-
-header {
-    background: rgba(5, 6, 13, 0.6) !important;
-    border-bottom: 1px solid var(--color-border) !important;
-}
-#view-title {
-    background: linear-gradient(90deg, #67e8f9, #c084fc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent !important;
-    letter-spacing: 0.02em;
-}
-
-aside { background: rgba(7, 9, 18, 0.85) !important; backdrop-filter: blur(20px); }
-.nav-item { transition: all 0.2s ease; border: 1px solid transparent; }
-.nav-item:hover { background: rgba(34, 211, 238, 0.06); border-color: var(--color-border); }
-.nav-item.active {
-    background: linear-gradient(90deg, rgba(34, 211, 238, 0.18), rgba(168, 85, 247, 0.08));
-    color: var(--color-primary) !important;
-    border-color: rgba(34, 211, 238, 0.3);
-    box-shadow: 0 0 22px -8px rgba(34, 211, 238, 0.6);
-}
-
-.mobile-bottom-nav {
-    background: rgba(7, 9, 18, 0.9) !important;
-    backdrop-filter: blur(18px);
-    border-top: 1px solid var(--color-border);
-}
-.mobile-nav-item.active { color: var(--color-primary) !important; text-shadow: 0 0 12px rgba(34, 211, 238, 0.7); }
-
-.native-press { transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease; }
-.native-press:hover { box-shadow: 0 0 0 1px var(--color-primary), 0 0 26px -6px var(--color-primary); }
-.native-press:active { transform: scale(0.97); }
-.bg-primary { background: linear-gradient(135deg, #06b6d4, #7c3aed) !important; color: #fff !important; }
-
-input[type="text"]:not(.login-input), input[type="password"]:not(.login-input),
-input[type="number"], select, textarea {
-    background-color: rgba(8, 11, 22, 0.8) !important;
-    color: var(--color-text) !important;
-    border: 1px solid var(--color-border) !important;
-    border-radius: 0.75rem !important;
-}
-input:focus, select:focus, textarea:focus {
-    border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18) !important;
-    outline: none;
-}
-select option { background-color: #0c1020 !important; color: var(--color-text) !important; }
-
-.login-input {
-    background-color: rgba(8, 11, 22, 0.8) !important;
-    border-color: var(--color-border) !important;
-    color: var(--color-text) !important;
-}
-.login-input:focus {
-    border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2) !important;
-}
-#login-box { background: radial-gradient(circle at 30% 20%, rgba(34,211,238,.10), transparent 55%), var(--color-bg) !important; }
-
-.text-primary { color: var(--color-primary) !important; }
-.lock-pulse { animation: pulseGlow 3s ease-in-out infinite; }
-@keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 30px rgba(34,211,238,.25); }
-    50% { box-shadow: 0 0 55px rgba(168,85,247,.45); }
-}
-.fade-in { animation: fadeIn 0.35s ease-out; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-
-[data-accordion-content] { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(34, 211, 238, 0.25); border-radius: 3px; }
-
-html[lang="fa"] body, html[lang="fa"] body *:not(.font-mono) {
-    font-family: 'Vazirmatn', sans-serif !important;
-}
-</style></head>
+        <div class="nav-label">Support</div>
+        <button onclick="switchTab('help')" id="tab-help" class="nav-item flex items-center w-full px-4 py-2.5 text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <svg class="w-5 h-5 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <span class="font-semibold text-sm" data-i18n="tab_help">Help & FAQ</span>
+        </button>
+    </nav>
+    <div class="p-4 border-t border-[var(--color-border)]">
+        <button onclick="logout()" class="flex items-center justify-center w-full px-4 py-2.5 rounded-xl text-red-400 hover:bg-red-500/10 font-semibold text-sm transition-colors">
+            <span data-i18n="logout">Disconnect</span>
+        </button>
+    </div>
+</aside>
